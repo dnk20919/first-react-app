@@ -18,11 +18,28 @@ code {
   width: 600px;
 }
 
-.rm {
+.buttonsRemove {
+  width: 400px;
+  display: flex;
+  align-self: center;
+  margin: 0 auto;
+  justify-content: space-evenly;
+}
+
+.remove {
   background: red;
-  border-radius: 50%;
+  border-radius: 10px;
   color: #fff;
   border: none;
+  padding: 10px;
+}
+
+.dontRemove {
+  background: green;
+  border-radius: 10px;
+  color: #fff;
+  border: none;
+  padding: 10px;
 }
 
 .done {

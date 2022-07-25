@@ -1,6 +1,7 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState} from 'react'
 import PropTypes from 'prop-types'
 import Context from '../context'
+import Modal from '../Modal/Modal'
 
 const styles = {
     li: {
@@ -19,6 +20,7 @@ const styles = {
 }
 
 function TodoItem({ todo, index, onChange }) {
+    const [modalActive, setModalActive] = useState(false);
     const { removeTodo } = useContext(Context)
     const classes = []
 
@@ -40,7 +42,14 @@ function TodoItem({ todo, index, onChange }) {
                 {todo.title}
             </span>
 
-            <button className='rm' onClick={removeTodo.bind(null, todo.id)}>&times;</button>
+            <button className='openConfirmModal' onClick={() => setModalActive(true)}>&times;</button>
+            <Modal active={modalActive} setActive={setModalActive}>
+                <h2>Confirmation of deletion ToDo Item</h2>
+                <div className='buttonsRemove'>
+                    <button className='remove' onClick={removeTodo.bind(null, todo.id)}>Delete Todo Item</button>
+                    <button className='dontRemove' onClick={() => setModalActive(false)}>Don't delete Todo Item</button>
+                </div>
+            </Modal>
         </li>
     )
 }
